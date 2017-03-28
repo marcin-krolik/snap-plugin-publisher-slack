@@ -43,8 +43,8 @@ This builds the plugin in `./build`
 ## Documentation
 
 The plugin expects you to provide the following parameters:
- - `webook`
- - `publish_fields`
+ - `webook` eg. `https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX` more @ [Slack WebApi](https://api.slack.com/incoming-webhooks)
+ - `publish_fields` eg. `"Namespace|Config|Data|Description|Timestamp|Unit|Version"`
  - `channel`
  - `username` (optional)
 

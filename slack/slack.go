@@ -20,9 +20,10 @@ limitations under the License.
 package slack
 
 import (
-	"encoding/json"
-	"net/http"
 	"bytes"
+	"encoding/json"
+	"fmt"
+	"net/http"
 	"strings"
 
 	"github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
@@ -60,6 +61,10 @@ func (p *slackPublisher) Publish(metrics []plugin.Metric, config plugin.Config) 
 	if err != nil {
 		return err
 	}
+	channel, err := config.GetString("channel")
+	if err != nil {
+		return err
+	}
 	//TODO: current implementation publishes each metric separately; add publish as group (consider max message size)
 	for _, metric := range metrics {
 		toPublish := map[string]interface{}{}
@@ -81,7 +86,7 @@ func (p *slackPublisher) Publish(metrics []plugin.Metric, config plugin.Config) 
 		}
 		payload := map[string]string{
 			"text": string(message),
-			"channel": "#general",
+			"channel": fmt.Sprintf("#%s", channel),
 			"username": "monkey-bot",
 		}
 		js, err := json.Marshal(payload)
