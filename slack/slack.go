@@ -28,7 +28,7 @@ import (
 )
 
 const (
-	Name = "slack"
+	Name    = "slack"
 	Version = 1
 )
 
@@ -62,10 +62,10 @@ func (p *slackPublisher) Publish(metrics []plugin.Metric, config plugin.Config) 
 	if err != nil {
 		return err
 	}
-    username, err := config.GetString("username")
-    if err != nil {
-        return err
-    }
+	username, err := config.GetString("username")
+	if err != nil {
+		return err
+	}
 	//TODO: current implementation publishes each metric separately; add publish as group (consider max message size)
 	for _, metric := range metrics {
 		toPublish := map[string]interface{}{}
@@ -86,8 +86,8 @@ func (p *slackPublisher) Publish(metrics []plugin.Metric, config plugin.Config) 
 			return err
 		}
 		payload := map[string]string{
-			"text": string(message),
-			"channel": fmt.Sprintf("#%s", channel),
+			"text":     string(message),
+			"channel":  fmt.Sprintf("#%s", channel),
 			"username": username,
 		}
 		js, err := json.Marshal(payload)

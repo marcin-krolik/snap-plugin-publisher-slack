@@ -18,7 +18,7 @@ package main
 
 import (
 	"github.com/intelsdi-x/snap-plugin-lib-go/v1/plugin"
-	"github.com/intelsdi-x/snap-plugin-publisher-slack/slack"
+	"github.com/marcin-krolik/snap-plugin-publisher-slack/slack"
 )
 
 func main() {
